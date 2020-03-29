@@ -228,12 +228,13 @@ abstract class Model extends BaseModel
     /**
      * @inheritdoc
      */
-    public function originalIsEquivalent($key, $current)
+    public function originalIsEquivalent($key)
     {
         if (!array_key_exists($key, $this->original)) {
             return false;
         }
 
+        $current = Arr::get($this->attributes, $key);
         $original = $this->getOriginal($key);
 
         if ($current === $original) {
